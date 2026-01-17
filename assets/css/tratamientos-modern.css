@@ -1,0 +1,376 @@
+/**
+ * Estilos Modernos para Registro de Tratamientos
+ * Inspirado en interfaces jurídicas profesionales
+ */
+
+/* ==== RESET Y BASE ==== */
+.ull-tratamientos-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ==== LISTADO DE TRATAMIENTOS ==== */
+.tratamientos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.tratamiento-card {
+    background: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.tratamiento-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #0073aa;
+    transform: translateY(-2px);
+}
+
+.tratamiento-card-header {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tratamiento-id {
+    font-size: 11px;
+    color: #8c8c8c;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.tratamiento-nombre {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.tratamiento-area {
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tratamiento-area::before {
+    content: "📋";
+    font-size: 14px;
+}
+
+.tratamiento-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.tratamiento-meta-item {
+    font-size: 11px;
+    color: #8c8c8c;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tratamiento-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.btn-tratamiento {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid;
+}
+
+.btn-tratamiento-primary {
+    background: #0073aa;
+    color: #fff;
+    border-color: #0073aa;
+}
+
+.btn-tratamiento-primary:hover {
+    background: #005a87;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-tratamiento-secondary {
+    background: #fff;
+    color: #0073aa;
+    border-color: #0073aa;
+}
+
+.btn-tratamiento-secondary:hover {
+    background: #f0f6fc;
+    text-decoration: none;
+}
+
+.btn-tratamiento-ghost {
+    background: transparent;
+    color: #666;
+    border-color: #ddd;
+}
+
+.btn-tratamiento-ghost:hover {
+    background: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+}
+
+/* ==== VISTA INDIVIDUAL ==== */
+.tratamiento-detail {
+    background: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+.tratamiento-detail-header {
+    background: linear-gradient(135deg, #0073aa 0%, #005a87 100%);
+    color: #fff;
+    padding: 32px;
+}
+
+.tratamiento-detail-title {
+    font-size: 28px;
+    font-weight: 300;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.tratamiento-detail-meta {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.tratamiento-detail-body {
+    padding: 32px;
+}
+
+.tratamiento-section {
+    margin: 32px 0;
+    padding: 24px;
+    background: #f8f9fa;
+    border-left: 4px solid #0073aa;
+    border-radius: 4px;
+}
+
+.tratamiento-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #0073aa;
+    margin: 0 0 16px 0;
+}
+
+.tratamiento-section-content {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.tratamiento-detail-actions {
+    padding: 24px 32px;
+    background: #f8f9fa;
+    border-top: 1px solid #e1e8ed;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==== BADGES Y ESTADOS ==== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-activo {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-inactivo {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ==== BARRA DE BÚSQUEDA ==== */
+.tratamientos-search {
+    background: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.tratamientos-search-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.tratamientos-search-input {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.tratamientos-search-input:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
+}
+
+/* ==== HEADER DE PÁGINA ==== */
+.tratamientos-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e1e8ed;
+}
+
+.tratamientos-page-title {
+    font-size: 24px;
+    font-weight: 300;
+    color: #222;
+    margin: 0;
+}
+
+.tratamientos-stats {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    color: #666;
+}
+
+.tratamientos-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tratamientos-stat-number {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0073aa;
+}
+
+/* ==== EMPTY STATE ==== */
+.tratamientos-empty {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #ddd;
+}
+
+.tratamientos-empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.tratamientos-empty-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.tratamientos-empty-text {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 24px 0;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+    .tratamientos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tratamiento-detail-header {
+        padding: 24px 20px;
+    }
+    
+    .tratamiento-detail-body {
+        padding: 20px;
+    }
+    
+    .tratamiento-detail-title {
+        font-size: 22px;
+    }
+    
+    .tratamiento-detail-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ==== LOADING STATE ==== */
+.tratamiento-card.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* ==== PRINT STYLES ==== */
+@media print {
+    .tratamiento-detail-actions,
+    .tratamientos-page-header .btn-tratamiento {
+        display: none !important;
+    }
+    
+    .tratamiento-detail {
+        border: none;
+        box-shadow: none;
+    }
+}
