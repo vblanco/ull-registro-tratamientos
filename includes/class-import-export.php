@@ -40,7 +40,8 @@ class ULL_RT_Import_Export {
      * Generar archivo CSV
      */
     private function generar_csv($tratamientos) {
-        $filename = 'tratamientos_ull_' . date('Y-m-d') . '.csv';
+        // (añade ID del blog por si nos da por tener dos sites para RAT en un multisite):
+        $filename = 'tratamientos_ull_' . get_current_blog_id() . '_' . date('Y-m-d') . '.csv';
         
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');

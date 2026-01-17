@@ -15,6 +15,7 @@ class ULL_RT_Audit_Log {
         $usuario = wp_get_current_user();
         
         $wpdb->insert($table, array(
+            'blog_id' => get_current_blog_id(), // Añadir esta columna para soporte Multisite
             'usuario_id' => get_current_user_id(),
             'usuario_nombre' => $usuario->display_name,
             'accion' => $accion,
@@ -85,6 +86,9 @@ class ULL_RT_Audit_Log {
         } else {
             $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         }
-        return $ip;
+        if (strpos($ip, ',') !== false) {
+            $ip = explode(',', $ip)[0]; // Tomar la primera IP de la lista por si hay balanceadores de por medio
+        }
+        return sanitize_text_field($ip);
     }
 }

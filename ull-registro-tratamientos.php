@@ -64,6 +64,9 @@ class ULL_Registro_Tratamientos {
     private function init_hooks() {
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
+
+        // Soporte Multisite: Hook para cuando se crea un sitio nuevo en el multisite
+        add_action('wp_initialize_site', array($this, 'activate_new_site'));
         
         add_action('init', array($this, 'init'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
@@ -79,15 +82,47 @@ class ULL_Registro_Tratamientos {
         ULL_RT_Propuestas::get_instance();
     }
     
-    public function activate() {
+    /**
+     * Multisite: Soporte para activación en red
+     */
+    public function activate($network_wide) {
+        if (is_multisite() && $network_wide) {
+            // Recorrer todos los sitios de la red
+            $sites = get_sites(['fields' => 'ids', 'number' => 0]);
+            foreach ($sites as $site_id) {
+                switch_to_blog($site_id);
+                $this->run_site_setup();
+                restore_current_blog();
+            }
+        } else {
+            // Activación en un solo sitio
+            $this->run_site_setup();
+        }
+        
+        error_log('ULL Registro Tratamientos: Plugin activado');
+    }
+
+    /**
+     * Multisite: Setup específico para cada sitio
+     */
+    private function run_site_setup() {
         ULL_RT_Database::create_tables();
         $this->create_roles();
         flush_rewrite_rules();
-        
-        // Log de activación
-        error_log('ULL Registro Tratamientos: Plugin activado');
     }
-    
+
+    /**
+     * Multisite: Hook para nuevos sitios
+     * Si el plugin está activo en la red, se asegura de crear tablas en el nuevo blog
+     */
+    public function activate_new_site($site) {
+        if (is_plugin_active_for_network(ULL_RT_PLUGIN_BASENAME)) {
+            switch_to_blog($site->blog_id);
+            $this->run_site_setup();
+            restore_current_blog();
+        }
+    }
+      
     public function deactivate() {
         flush_rewrite_rules();
         error_log('ULL Registro Tratamientos: Plugin desactivado');
